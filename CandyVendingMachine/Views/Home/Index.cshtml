@@ -1,0 +1,33 @@
+﻿@model IList<Candy>;
+@{
+    ViewData["Title"] = "Candy Vending Machine";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Candy Vending Machine</h1>
+    <h2>Click to dispense</h2>
+</div>
+
+<div id="vending" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        @foreach (var item in Model)
+        {
+            <div class="carousel-item @(Model.IndexOf(item) == 0 ? "active" : "")">
+                <img onclick="dispense('@item.Name')" src="@item.Image" alt="@item.Name">
+                <ul>
+                    <li>@item.Name</li>
+                    <li>Net @(item.Weight)g</li>
+                    <li>$ @item.Price</li>
+                </ul>
+            </div>
+        }
+    </div>
+    <a class="carousel-control-prev" href="#vending" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#vending" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
